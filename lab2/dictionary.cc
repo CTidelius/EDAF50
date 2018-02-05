@@ -8,16 +8,19 @@
 #include <unordered_set>
 
 using std::string;
+using std::ifstream;
 using std::vector;
-using std::unordered_set;
-using std::endl;
 using std::cout;
+using std::endl;
+using std::stringstream;
+using std::min;
 
 Dictionary::Dictionary() {
 	string line;
 	ifstream inputFile("/Users/carltidelius/Downloads/EDAF50-master/EDAF50/lab2/words");
-	if (inputFile.isOpen()){
-		while(getLine(inputFile, line)){
+	if (inputFile.is_open()){
+		while(getline(inputFile, line)){
+			transform(line.begin(), line.end(), line.begin(), ::tolower);
 			dict.insert(line);
 		}
 	}else {
@@ -27,8 +30,8 @@ Dictionary::Dictionary() {
 
 
 bool Dictionary::contains(const string& word) const {
-	if(dict.count(word) == 1){
-		cout << "den hittade ordet";
+	auto c = dict.find(word);
+	if(c != dict.end()){
 		return true;
 	}
 	return false;
