@@ -23,7 +23,7 @@ LDFLAGS += -L.
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = spell
+PROGS = spell dictionaryModifyer
 
 all: $(PROGS)
 
@@ -34,6 +34,7 @@ test: spell
 
 
 spell: dictionary.o spell.o word.o
+dictionaryModifyer: dictionaryModifyer.o
 # Phony targets
 .PHONY: all test clean distclean
 
